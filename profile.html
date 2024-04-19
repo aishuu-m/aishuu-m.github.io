@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to right, #936c9d, #fecfef);
+      font-family: Arial, sans-serif;
+      color: #333;
+    }
+    .profile-container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 30px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      cursor: grab;
+      max-width: 100%;
+      transition: all 0.3s ease;
+    }
+    .profile-picture-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 50%;
+      width: 150px;
+      height: 150px;
+      margin: 0 auto;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    }
+    .profile-picture {
+      width: 100%;
+      height: auto;
+      transition: transform 0.3s ease;
+    }
+    .profile-picture:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    }
+    .profile-picture-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: 50%;
+    }
+    .profile-picture-container:hover .profile-picture-overlay {
+      opacity: 1;
+    }
+    .profile-name {
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 20px;
+      text-align: center;
+    }
+    .profile-info {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .profile-info p {
+      margin-bottom: 5px;
+    }
+    .profile-info strong {
+      color: #777272;
+    }
+    .about-me, .projects {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    }
+    .about-me h2, .projects h2 {
+      color: #131314;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="profile-container p-4">
+    <div class="profile-picture-container">
+      <img src="InShot_20210508_185053688.jpg" alt="Profile Picture" class="profile-picture">
+      <div class="profile-picture-overlay">
+        <p class="text-light">Hover to Zoom</p>
+      </div>
+    </div>
+    <h1 class="profile-name">Aishwarya</h1>
+    <div class="profile-info">
+      <p><strong>Email:</strong> Aishwaryamurugesan13@gmail.com</p>
+      <p><strong>Location:</strong> Erode,TamilNadu</p>
+      <p><strong>current status:</strong> Student</p>
+    </div>
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <div class="about-me">
+          <h2>About Me</h2>
+          <p>Currently pursuing Master's degree at Amrita University,Amritapuri,kollam.</p>
+          <p>Completed my Bachelor's degree in Bharathiyar University,Coimbatore.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="frontend project">
+          <h2>projects</h2>
+          <ul>
+            <li><a href="photo album.html">photo Album</a></li>
+            <li><a href="image_processing.html">image processing</a></li>
+            <li><a href="main.html">tic tac toe</a></li>
+            <li><a href="tictactoeai.html">tic tac toe-AI</a></li>
+            <li><a href="index.html">wordle game</a></li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

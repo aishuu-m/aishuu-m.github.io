@@ -1,0 +1,43 @@
+<style>
+        /* Custom CSS for Image Processing Photo Album */
+        body {
+            background-color: #f8f9fa; /* Light background color */
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        h1 {
+            color: #5a90ca; /* Blue color for the title */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Text shadow for title */
+        }
+
+        .btn {
+            margin-bottom: 10px;
+            border: 2px solid transparent; /* Transparent border initially */
+            border-radius: 30px; /* Rounded corners */
+            transition: all 0.3s ease; /* Smooth transition */
+        }
+
+        .btn:hover {
+            border-color: #343a40; /* Dark gray border on hover */
+            background-color: #4675a3; /* Light gray background on hover */
+            color: #c8d2dc; /* Dark gray text on hover */
+        }
+
+        .btn-primary {
+            background-color: #b1b7bf; /* Blue background for primary button */
+            color: #fff; /* White text color */
+        }
+
+        .btn-secondary {
+            background-color: #6d869b; /* Gray background for secondary button */
+            color: #fff; /* White text color */
+        }
+
+        .btn-success {
+            background-color: #a0dbae; /* Green background for success button */
+            color: #fff; /* White text color */
+        }
+    </style>

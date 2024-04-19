@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tic-tac-toe</title>
+  <style>
+    /* Beautiful CSS styles go here */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    .board {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .cell {
+      width: 100px;
+      height: 100px;
+      background-color: #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2em;
+      cursor: pointer;
+    }
+    .cell:hover {
+      background-color: #e0e0e0;
+    }
+    .message {
+      margin-top: 20px;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+    .btn {
+      margin-top: 10px;
+      padding: 8px 16px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="board"></div>
+  <div class="message"></div>
+  <button class="btn" onclick="startGame()">Start New Game</button>
+  <button class="btn" onclick="undoMove()">Undo</button>
+</div>
+
+<script>
+  let board = ['', '', '', '', '', '', '', '', ''];
+  let currentPlayer = 'X';
+  let gameActive = false;
+  let singlePlayerMode = false;
+
+  const cells = document.querySelectorAll('.cell');
+  const message = document.querySelector('.message');
+
+  cells.forEach(cell => cell.addEventListener('click', () => {
+    if (!gameActive || cell.textContent !== '') return;
+    makeMove(Array.from(cells).indexOf(cell));
+    if (!singlePlayerMode && gameActive) {
+      currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+      message.textContent = `Player ${currentPlayer}'s turn`;
+    }
+  }));
+
+  function startGame() {
+    board = ['', '', '', '', '', '', '', '', ''];
+    currentPlayer = 'X';
+    gameActive = true;
+    singlePlayerMode = confirm('Play against AI?');
+    message.textContent = `Player ${currentPlayer}'s turn`;
+    cells.forEach(cell => cell.textContent = '');
+  }
+
+  function makeMove(index) {
+    board[index] = currentPlayer;
+    cells[index].textContent = currentPlayer;
+    checkWinner();
+  }
+
+  function checkWinner() {
+    const winningCombos = [
+      [0, 1, 2], [3, 4, 5], [6, 7, 8],
+      [0, 3, 6], [1, 4, 7], [2, 5, 8],
+      [0, 4, 8], [2, 4, 6]
+    ];
+    for (let combo of winningCombos) {
+      const [a, b, c] = combo;
+      if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+        gameActive = false;
+        message.textContent = `Player ${board[a]} wins!`;
+        return;
+      }
+    }
+    if (!board.includes('')) {
+      gameActive = false;
+      message.textContent = 'It\'s a draw!';
+    }
+  }
+
+  function undoMove() {
+    if (!gameActive || singlePlayerMode) return;
+    const lastMoveIndex = board.lastIndexOf(currentPlayer);
+    if (lastMoveIndex >= 0) {
+      board[lastMoveIndex] = '';
+      cells[lastMoveIndex].textContent = '';
+      currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+      message.textContent = `Player ${currentPlayer}'s turn`;
+    }
+  }
+
+  function makeAIMove() {
+    if (!singlePlayerMode || !gameActive) return;
+    let emptyCells = [];
+    board.forEach((cell, index) => {
+      if (cell === '') emptyCells.push(index);
+    });
+    const randomIndex = Math.floor(Math.random() * emptyCells.length);
+    makeMove(emptyCells[randomIndex]);
+  }
+
+  setInterval(() => {
+    if (gameActive && singlePlayerMode && currentPlayer === 'O') {
+      makeAIMove();
+    }
+  }, 1000);
+
+  startGame();
+</script>
+
+</body>
+</html>
